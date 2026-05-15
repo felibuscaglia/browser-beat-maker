@@ -236,6 +236,7 @@ header {
     height: 32px;
     display: flex;
     align-items: center;
+    --bpm-fill: 42.857%;
 }
 
 .bpm-track {
@@ -247,12 +248,11 @@ header {
     overflow: hidden;
 }
 
-/* Static fill — default 120 BPM = ~43% across 60-200 range */
 .bpm-track::before {
     content: '';
     position: absolute;
     top: 0; bottom: 0; left: 0;
-    width: 43%;
+    width: var(--bpm-fill);
     background: linear-gradient(90deg, var(--hihat), var(--clap));
     box-shadow: 0 0 16px rgba(77, 212, 255, 0.4);
 }
