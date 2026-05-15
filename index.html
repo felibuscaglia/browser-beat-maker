@@ -10,15 +10,12 @@
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js"></script>
 </head>
 <body>
     <div class="wrap">
         <header>
             <div class="brand">
-                <div class="logo" aria-hidden="true">
-                    <i class="ph-fill ph-grid-four"></i>
-                </div>
                 <div class="title-block">
                     <h1>Browser Beat Maker</h1>
                     <div class="sub">step sequencer · v0.1</div>
@@ -32,13 +29,9 @@
             <!-- Transport / controls -->
             <div class="transport">
                 <div class="play-cluster">
-                    <button class="btn-play" aria-label="Play">
+                    <button class="btn-play" aria-label="Play" type="button">
                         <i class="ph-fill ph-play"></i>
                     </button>
-                    <div class="tempo-readout">
-                        <div class="label">Transport</div>
-                        <div class="value">— : — : —</div>
-                    </div>
                 </div>
 
                 <div class="bpm">
@@ -103,19 +96,19 @@
                         <span class="track-dot"></span>
                         <span class="track-name">Kick</span>
                     </div>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Kick step 1"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Kick step 1"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 2"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 3"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 4"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Kick step 5"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Kick step 5"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 6"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 7"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 8"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Kick step 9"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Kick step 9"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 10"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 11"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 12"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Kick step 13"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Kick step 13"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 14"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 15"></label>
                     <label class="cell"><input type="checkbox" aria-label="Kick step 16"></label>
@@ -127,19 +120,19 @@
                         <span class="track-dot"></span>
                         <span class="track-name">Snare</span>
                     </div>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Snare step 1"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Snare step 1"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 2"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 3"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 4"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Snare step 5"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Snare step 5"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 6"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 7"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 8"></label>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Snare step 9"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Snare step 9"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 10"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 11"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 12"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Snare step 13"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Snare step 13"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 14"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 15"></label>
                     <label class="cell"><input type="checkbox" aria-label="Snare step 16"></label>
@@ -151,19 +144,19 @@
                         <span class="track-dot"></span>
                         <span class="track-name">Hi-Hat</span>
                     </div>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Hi-Hat step 1"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 1"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 2"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 3"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 4"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Hi-Hat step 5"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 5"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 6"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 7"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 8"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Hi-Hat step 9"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 9"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 10"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 11"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 12"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Hi-Hat step 13"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 13"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 14"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Hi-Hat step 15"></label>
                     <label class="cell"><input type="checkbox" aria-label="Hi-Hat step 16"></label>
@@ -175,19 +168,19 @@
                         <span class="track-dot"></span>
                         <span class="track-name">Clap</span>
                     </div>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Clap step 1"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Clap step 1"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 2"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 3"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 4"></label>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Clap step 5"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Clap step 5"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 6"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 7"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Clap step 8"></label>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Clap step 9"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Clap step 9"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 10"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 11"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 12"></label>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Clap step 13"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Clap step 13"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 14"></label>
                     <label class="cell"><input type="checkbox" aria-label="Clap step 15"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Clap step 16"></label>
@@ -199,19 +192,19 @@
                         <span class="track-dot"></span>
                         <span class="track-name">Bass</span>
                     </div>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Bass step 1"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Bass step 1"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 2"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 3"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Bass step 4"></label>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Bass step 5"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Bass step 5"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 6"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Bass step 7"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 8"></label>
-                    <label class="cell beat-start"><input type="checkbox" checked aria-label="Bass step 9"></label>
+                    <label class="cell"><input type="checkbox" checked aria-label="Bass step 9"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 10"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 11"></label>
                     <label class="cell"><input type="checkbox" checked aria-label="Bass step 12"></label>
-                    <label class="cell beat-start"><input type="checkbox" aria-label="Bass step 13"></label>
+                    <label class="cell"><input type="checkbox" aria-label="Bass step 13"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 14"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 15"></label>
                     <label class="cell"><input type="checkbox" aria-label="Bass step 16"></label>
