@@ -144,7 +144,7 @@ header {
 /* ===== Transport bar ===== */
 .transport {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     gap: 24px;
     padding: 16px 18px;
@@ -321,6 +321,51 @@ header {
     letter-spacing: 0.1em;
 }
 
+/* Beat name input */
+.beat-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.beat-name-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--text-faint);
+    font-weight: 700;
+}
+
+.beat-name-input {
+    background: var(--bg-3);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    width: 200px;
+    outline: none;
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.beat-name-input::placeholder {
+    color: var(--text-faint);
+}
+
+.beat-name-input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: #262635;
+}
+
+.beat-name-input:focus {
+    border-color: rgba(185, 109, 255, 0.5);
+    background: #262635;
+    box-shadow: 0 0 0 3px rgba(185, 109, 255, 0.14);
+}
+
 /* Right side action buttons */
 .actions {
     display: flex;
@@ -413,13 +458,15 @@ header {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    min-width: 0;
 }
 
 .row {
     display: grid;
-    grid-template-columns: 132px repeat(16, 1fr);
+    grid-template-columns: 132px repeat(16, minmax(0, 1fr));
     gap: 6px;
     align-items: stretch;
+    min-width: 0;
 }
 
 .track-label {
@@ -621,21 +668,102 @@ header {
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 920px) {
+
+/* Tablet: re-flow transport into two rows so it doesn't crowd ===== */
+@media (max-width: 980px) {
     .transport {
-        grid-template-columns: 1fr;
-        gap: 18px;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "play bpm"
+            "name actions";
+        column-gap: 18px;
+        row-gap: 16px;
     }
-    .actions { flex-wrap: wrap; justify-self: stretch; }
-    .step-numbers, .row { grid-template-columns: 110px repeat(16, 1fr); }
+    .play-cluster { grid-area: play; }
+    .bpm {
+        grid-area: bpm;
+        max-width: none;
+        width: auto;
+        justify-self: stretch;
+    }
+    .beat-name {
+        grid-area: name;
+        min-width: 0;
+    }
+    .beat-name-input {
+        width: 100%;
+        min-width: 0;
+        flex: 1;
+    }
+    .actions {
+        grid-area: actions;
+        justify-self: end;
+        flex-wrap: wrap;
+    }
+    .step-numbers, .row { grid-template-columns: 110px repeat(16, minmax(0, 1fr)); }
 }
 
+/* Small tablet / large phone: cell + label scale down */
 @media (max-width: 720px) {
     body { padding: 24px 12px; }
     .console { padding: 18px; border-radius: 18px; }
-    .step-numbers, .row { grid-template-columns: 88px repeat(16, minmax(18px, 1fr)); gap: 3px; }
+    .step-numbers, .row { grid-template-columns: 88px repeat(16, minmax(0, 1fr)); gap: 3px; }
     .track-label { padding: 0 10px; height: 40px; }
     .track-name { font-size: 10px; }
     .cell { height: 40px; border-radius: 6px; }
     .step-num { font-size: 9px; }
+}
+
+/* Phone: stack the transport, beat-name on its own row, actions span full width */
+@media (max-width: 640px) {
+    .transport {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "play bpm"
+            "name name"
+            "actions actions";
+        column-gap: 14px;
+        row-gap: 14px;
+        padding: 14px;
+    }
+    .bpm { gap: 10px; }
+    .bpm-display { min-width: 72px; }
+    .bpm-display .num { font-size: 22px; }
+    .beat-name { width: 100%; }
+    .actions {
+        justify-self: stretch;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .actions .btn {
+        justify-content: center;
+        padding: 12px 10px;
+    }
+    header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .byline { font-size: 11px; }
+}
+
+/* Very small phone: keep grid usable, shrink chrome a bit more */
+@media (max-width: 480px) {
+    body { padding: 18px 10px; }
+    .console { padding: 12px; border-radius: 16px; gap: 18px; }
+    .step-numbers, .row { grid-template-columns: 60px repeat(16, minmax(0, 1fr)); gap: 2px; }
+    .track-label { padding: 0 8px; gap: 6px; }
+    .track-dot { width: 8px; height: 8px; }
+    .track-name { font-size: 9px; letter-spacing: 0.04em; }
+    .track-label::before { width: 2px; }
+    .cell { height: 36px; border-radius: 5px; }
+    .btn-play { width: 48px; height: 48px; border-radius: 14px; }
+    .btn-play i { font-size: 18px; }
+}
+
+@media (max-width: 360px) {
+    .step-numbers, .row { grid-template-columns: 36px repeat(16, minmax(0, 1fr)); }
+    .track-label { padding: 0 6px; justify-content: center; }
+    .track-name { display: none; }
+    .cell { height: 32px; border-radius: 4px; }
 }

@@ -1,6 +1,6 @@
 import { SOUNDS, INITIAL_TILES } from "./constants.js";
 
-const tiles = { ...INITIAL_TILES };
+let tiles = { ...INITIAL_TILES };
 let intervalId;
 let isPlaying = false;
 let currentStep = 0;
@@ -88,6 +88,41 @@ function randomize() {
   }
 }
 
+function save() {
+  const fileName =
+    document.querySelector("#beat-name-input").value || "Untitled Beat";
+  const dataStr =
+    "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tiles));
+  const saveAnchorNode = document.createElement("a");
+  saveAnchorNode.setAttribute("href", dataStr);
+  saveAnchorNode.setAttribute("download", fileName + ".json");
+  document.body.appendChild(saveAnchorNode);
+  saveAnchorNode.click();
+  saveAnchorNode.remove();
+}
+
+function load({ target: { files } }) {
+  const file = files[0];
+
+  if (file) {
+    document.querySelector("#beat-name-input").value = file.name.split('.')[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      tiles = JSON.parse(e.target.result);
+
+      for (const instrument of INSTRUMENTS) {
+        for (let i = 0; i < grid[instrument].length; i++) {
+          grid[instrument][i].checked = tiles[instrument][i];
+          tiles[instrument][i] = tiles[instrument][i];
+        }
+      }
+    };
+
+    reader.readAsText(file);
+  }
+}
+
 document.querySelector(".btn-play")?.addEventListener("click", playOrPause);
 document.querySelector(".bpm-slider")?.addEventListener("input", (e) => {
   const { value, min, max } = e.target;
@@ -108,3 +143,5 @@ document.querySelectorAll(".cell").forEach((cell, i) => {
   cell.firstChild.addEventListener("click", () => toggleCell(instrument, i));
 });
 document.querySelector(".btn.accent")?.addEventListener("click", randomize);
+document.querySelector("#save-btn")?.addEventListener("click", save);
+document.querySelector("#file-loader")?.addEventListener("change", load);

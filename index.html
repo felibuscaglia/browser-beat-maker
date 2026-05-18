@@ -46,6 +46,11 @@
                     </div>
                 </div>
 
+                <div class="beat-name">
+                    <label class="beat-name-label" for="beat-name-input">Name</label>
+                    <input id="beat-name-input" class="beat-name-input" type="text" placeholder="Untitled beat" maxlength="40" aria-label="Beat name">
+                </div>
+
                 <div class="actions">
                     <button class="btn danger" aria-label="Clear pattern">
                         <i class="ph ph-trash"></i>
@@ -55,14 +60,15 @@
                         <i class="ph ph-dice-five"></i>
                         Randomize
                     </button>
-                    <button class="btn" aria-label="Save pattern">
+                    <button id="save-btn" class="btn" aria-label="Save pattern">
                         <i class="ph ph-floppy-disk"></i>
                         Save
                     </button>
-                    <button class="btn" aria-label="Load pattern">
+                    <label class="btn" aria-label="Load pattern">
                         <i class="ph ph-folder-open"></i>
                         Load
-                    </button>
+                        <input id="file-loader" type="file" accept=".json,application/json" hidden>
+                    </label>
                 </div>
             </div>
 
