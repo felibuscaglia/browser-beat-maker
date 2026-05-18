@@ -7,20 +7,24 @@ let currentStep = 0;
 let bpm = 120;
 let intervalTime = 60_000 / bpm / 4;
 
+const INSTRUMENTS = Object.keys(SOUNDS);
+const grid = Object.fromEntries(
+  INSTRUMENTS.map((instrument) => {
+    const row = document.querySelector(`.row.${instrument}`);
+    const inputs = [...row.querySelectorAll(".cell input")];
+    return [instrument, inputs];
+  }),
+);
+
 function tick() {
-  const rows = document.querySelectorAll(".row");
+  for (const instrument of INSTRUMENTS) {
+    const inputs = grid[instrument];
+    const currentCell = inputs[currentStep].closest(".cell");
+    const prevIndex = currentStep === 0 ? inputs.length - 1 : currentStep - 1;
+    const previousCell = inputs[prevIndex].closest(".cell");
 
-  for (const row of rows) {
-    const cells = row.querySelectorAll(".cell");
-    const currentCell = cells[currentStep];
-    const previousCell = cells[currentStep - 1] || cells[cells.length - 1];
-
-    if (previousCell) {
-      previousCell.classList.remove("playing");
-    }
-
+    previousCell?.classList.remove("playing");
     currentCell.classList.add("playing");
-    const instrument = row.classList[1];
 
     if (tiles[instrument][currentStep]) {
       SOUNDS[instrument].play();
@@ -28,6 +32,15 @@ function tick() {
   }
 
   currentStep = currentStep === 15 ? 0 : currentStep + 1;
+}
+
+function clear() {
+  for (const instrument of INSTRUMENTS) {
+    for (let i = 0; i < grid[instrument].length; i++) {
+      grid[instrument][i].checked = false;
+      tiles[instrument][i] = false;
+    }
+  }
 }
 
 function playOrPause() {
@@ -70,3 +83,4 @@ document.querySelector(".bpm-slider")?.addEventListener("input", (e) => {
     .style.setProperty("--bpm-fill", `${pct}%`);
 });
 document.querySelector(".bpm-slider")?.addEventListener("change", changeBpm);
+document.querySelector(".btn.danger")?.addEventListener("click", clear);
