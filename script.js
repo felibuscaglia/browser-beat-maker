@@ -27,7 +27,7 @@ function tick() {
     currentCell.classList.add("playing");
 
     if (tiles[instrument][currentStep]) {
-      SOUNDS[instrument].play();
+      SOUNDS[instrument].cloneNode().play();
     }
   }
 
@@ -73,6 +73,10 @@ function changeBpm({ target }) {
   }
 }
 
+function toggleCell(instrument, index) {
+  tiles[instrument][index] = !tiles[instrument][index];
+}
+
 document.querySelector(".btn-play")?.addEventListener("click", playOrPause);
 document.querySelector(".bpm-slider")?.addEventListener("input", (e) => {
   const { value, min, max } = e.target;
@@ -84,3 +88,11 @@ document.querySelector(".bpm-slider")?.addEventListener("input", (e) => {
 });
 document.querySelector(".bpm-slider")?.addEventListener("change", changeBpm);
 document.querySelector(".btn.danger")?.addEventListener("click", clear);
+document.querySelectorAll(".cell").forEach((cell, i) => {
+  while (i > 16) {
+    i -= 16;
+  }
+
+  const instrument = cell.parentElement.classList[1];
+  cell.firstChild.addEventListener("click", () => toggleCell(instrument, i));
+});
