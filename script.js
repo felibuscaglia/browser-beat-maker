@@ -77,6 +77,17 @@ function toggleCell(instrument, index) {
   tiles[instrument][index] = !tiles[instrument][index];
 }
 
+function randomize() {
+  for (const instrument of INSTRUMENTS) {
+    for (let i = 0; i < grid[instrument].length; i++) {
+      const checked = Math.round(Math.random()) === 1;
+
+      grid[instrument][i].checked = checked;
+      tiles[instrument][i] = checked;
+    }
+  }
+}
+
 document.querySelector(".btn-play")?.addEventListener("click", playOrPause);
 document.querySelector(".bpm-slider")?.addEventListener("input", (e) => {
   const { value, min, max } = e.target;
@@ -96,3 +107,4 @@ document.querySelectorAll(".cell").forEach((cell, i) => {
   const instrument = cell.parentElement.classList[1];
   cell.firstChild.addEventListener("click", () => toggleCell(instrument, i));
 });
+document.querySelector(".btn.accent")?.addEventListener("click", randomize);
